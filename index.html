@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Henry's Living Memory Diary</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
@@ -398,8 +398,11 @@
     .memory-image {
       width: 100%;
       height: auto;
+      min-height: 200px;
       display: block;
-      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+      object-fit: cover;
+      background: #f0f0f0;
     }
 
     .memory-card:hover .memory-image {
@@ -564,17 +567,103 @@
     }
 
     @media (max-width: 768px) {
-      .masonry-grid { columns: 2; column-gap: 20px; }
-      .main-header { padding: 0 20px; }
-      .memories-section { padding: 60px 20px; }
-      .hero-title { font-size: 2.5rem; }
-      .nav-modes { flex-wrap: wrap; }
+      .masonry-grid { 
+        columns: 2; 
+        column-gap: 15px; 
+        padding: 0 10px;
+      }
+      .main-header { 
+        padding: 0 15px; 
+        height: 70px;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .memories-section { padding: 40px 15px; }
+      .hero-section { height: 50vh; }
+      .hero-title { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1.2rem; }
+      .nav-modes { 
+        flex-wrap: wrap; 
+        gap: 5px;
+        padding: 4px;
+      }
+      .nav-mode {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      .logo-text { font-size: 18px; }
+      .logo-subtitle { font-size: 10px; margin-left: 42px; }
+      .filter-bar { 
+        gap: 8px; 
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 10px;
+      }
+      .filter-tag {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+      .memory-card {
+        margin-bottom: 15px;
+      }
+      .memory-image {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+      }
+      .section-title { font-size: 2rem; }
+      .section-subtitle { font-size: 1rem; padding: 0 15px; }
     }
 
     @media (max-width: 480px) {
-      .masonry-grid { columns: 1; }
-      .hero-title { font-size: 2rem; }
-      .filter-bar { gap: 8px; }
+      .masonry-grid { 
+        columns: 1; 
+        padding: 0 15px;
+        max-width: 100%;
+      }
+      .hero-title { font-size: 1.8rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .filter-bar { gap: 6px; }
+      .filter-tag {
+        padding: 6px 12px;
+        font-size: 11px;
+      }
+      .main-header {
+        height: auto;
+        padding: 10px 15px;
+      }
+      .nav-modes {
+        gap: 4px;
+        padding: 3px;
+      }
+      .nav-mode {
+        padding: 5px 10px;
+        font-size: 11px;
+      }
+      .memory-card {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+      .memory-image {
+        height: 250px;
+        object-fit: cover;
+      }
+      .memory-content {
+        padding: 15px;
+      }
+      .memory-title {
+        font-size: 1.1rem;
+      }
+      .memory-story {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .container {
+        margin-top: 120px;
+      }
     }
 
     /* ==================== LOADING ANIMATION ==================== */
@@ -656,6 +745,27 @@
      .memory-card {
        opacity: 1 !important;
        transform: translateY(0) !important;
+       /* Touch-friendly improvements */
+       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+       cursor: pointer;
+     }
+
+     /* Touch-friendly button improvements */
+     .nav-mode, .filter-tag, .close-modal {
+       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+       min-height: 44px;
+       min-width: 44px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
+
+     /* Ensure proper touch targets on mobile */
+     @media (max-width: 768px) {
+       .nav-mode, .filter-tag {
+         min-height: 40px;
+         padding: 8px 16px;
+       }
      }
 
      /* Mode sections */
@@ -1007,18 +1117,74 @@
        60% { transform: translateY(-5px); }
      }
 
-     /* ==================== RESPONSIVE ==================== */
+     /* ==================== ADDITIONAL MOBILE STYLES ==================== */
      @media (max-width: 768px) {
-       .timeline-item { padding-left: 60px; }
+       .timeline-item { padding-left: 50px; }
        .timeline-date { left: -15px; font-size: 10px; padding: 6px 12px; }
-       .timeline-content { flex-direction: column; }
-       .timeline-image { width: 100%; height: 150px; }
+       .timeline-content { flex-direction: column; gap: 15px; }
+       .timeline-image { width: 100%; height: 180px; object-fit: cover; }
        
-       .stories-grid { grid-template-columns: 1fr; }
-       .story-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+       .stories-grid { 
+         grid-template-columns: 1fr; 
+         gap: 20px;
+         padding: 0 15px;
+       }
+       .story-header { 
+         flex-direction: column; 
+         align-items: flex-start; 
+         gap: 10px; 
+       }
+       .story-card {
+         padding: 20px 15px;
+       }
        
-       .favorites-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-       .footer-stats { flex-direction: column; gap: 20px; }
+       .favorites-grid { 
+         grid-template-columns: 1fr; 
+         gap: 20px;
+         padding: 0 15px;
+       }
+       .footer-stats { 
+         flex-direction: column; 
+         gap: 15px; 
+       }
+       .footer { 
+         padding: 40px 20px 20px 20px; 
+       }
+       .modal-content {
+         width: 95%;
+         margin: 20px;
+         max-height: 90vh;
+         overflow-y: auto;
+       }
+       .modal-image {
+         height: 200px;
+         object-fit: cover;
+       }
+     }
+
+     @media (max-width: 480px) {
+       .timeline-item { padding-left: 40px; }
+       .timeline-date { 
+         left: -10px; 
+         font-size: 9px; 
+         padding: 4px 8px; 
+       }
+       .timeline-content { padding: 15px; }
+       .timeline-image { height: 150px; }
+       .timeline-title { font-size: 1rem; }
+       .timeline-story { font-size: 13px; }
+       
+       .story-card { padding: 15px; }
+       .story-title { font-size: 1rem; }
+       .story-text { font-size: 13px; }
+       
+       .favorite-card { margin-bottom: 15px; }
+       .favorite-content { padding: 15px; }
+       .favorite-title { font-size: 1rem; }
+       
+       .footer-logo { font-size: 1.5rem; }
+       .footer-quote { font-size: 1.1rem; }
+       .footer-stat-number { font-size: 1.5rem; }
      }
   </style>
 </head>
@@ -1511,9 +1677,15 @@
          card.className = 'memory-card fade-in visible'; // Make visible immediately
          card.style.animationDelay = `${index * 0.1}s`;
          
-         card.innerHTML = `
+                    card.innerHTML = `
            <div class="memory-emotion">${memory.emotion}</div>
-           <img class="memory-image" src="${memory.image}" alt="${memory.title}" loading="lazy" onerror="console.log('Image failed to load: ${memory.image}')">
+           <img class="memory-image" 
+                src="${memory.image}" 
+                alt="${memory.title}" 
+                loading="lazy" 
+                onerror="this.style.display='none'; console.log('Image failed to load: ${memory.image}'); this.nextElementSibling.style.paddingTop='20px';"
+                onload="this.style.opacity='1';"
+                style="opacity: 0; transition: opacity 0.3s ease;">
            <div class="memory-content">
              <div class="memory-date">${memory.date}</div>
              <h3 class="memory-title">${memory.title}</h3>
