@@ -96,17 +96,17 @@
 
     .logo-text {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
+      font-size: 18px;
       font-weight: 600;
       color: var(--text-primary);
     }
 
     .logo-subtitle {
-      font-size: 12px;
+      font-size: 10px;
       color: var(--text-light);
       font-weight: 400;
       margin-left: 52px;
-      margin-top: -8px;
+      margin-top: -2px;
     }
 
     /* ==================== NAVIGATION ==================== */
@@ -121,9 +121,9 @@
     }
 
     .nav-mode {
-      padding: 8px 16px;
+      padding: 6px 12px;
       border-radius: 16px;
-      font-size: 14px;
+      font-size: 10px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -161,25 +161,27 @@
       justify-content: center;
       overflow: hidden;
       background: 
-        radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 70%),
-        var(--gradient-1);
+        linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%),
+        linear-gradient(45deg, rgba(0, 212, 255, 0.3) 0%, rgba(139, 92, 246, 0.3) 50%, rgba(255, 107, 53, 0.3) 100%),
+        url('thumbnail_IMG_8004.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       animation: backgroundShift 8s ease-in-out infinite;
     }
 
     @keyframes backgroundShift {
       0%, 100% { 
         background: 
-          radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
-          var(--gradient-1);
+          linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%),
+          linear-gradient(45deg, rgba(0, 212, 255, 0.4) 0%, rgba(139, 92, 246, 0.4) 50%, rgba(255, 107, 53, 0.4) 100%),
+          url('thumbnail_IMG_8004.jpg');
       }
       50% { 
         background: 
-          radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 30% 70%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
-          var(--gradient-2);
+          linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%),
+          linear-gradient(45deg, rgba(139, 92, 246, 0.4) 0%, rgba(236, 72, 153, 0.4) 50%, rgba(255, 107, 53, 0.4) 100%),
+          url('thumbnail_IMG_8004.jpg');
       }
     }
 
@@ -191,7 +193,7 @@
 
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: 4rem;
+      font-size: 0.9rem;
       font-weight: 300;
       color: white;
       margin-bottom: 16px;
@@ -200,7 +202,7 @@
 
     .hero-subtitle {
       font-family: 'Dancing Script', cursive;
-      font-size: 1.5rem;
+      font-size: 0.5rem;
       color: rgba(255, 255, 255, 0.9);
       margin-bottom: 32px;
     }
@@ -208,8 +210,8 @@
     .memory-counter {
       background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(15px);
-      padding: 20px 40px;
-      border-radius: 50px;
+      padding: 10px 20px;
+      border-radius: 30px;
       border: 1px solid rgba(255, 255, 255, 0.4);
       display: inline-block;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -222,15 +224,15 @@
     }
 
     .counter-number {
-      font-size: 2rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: white;
     }
 
     .counter-label {
-      font-size: 14px;
+      font-size: 7px;
       color: rgba(255, 255, 255, 0.8);
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     /* ==================== FLOATING PARTICLES ==================== */
@@ -272,14 +274,14 @@
 
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 0.7rem;
       font-weight: 400;
       color: var(--text-primary);
       margin-bottom: 16px;
     }
 
     .section-subtitle {
-      font-size: 1.1rem;
+      font-size: 0.5rem;
       color: var(--text-light);
       max-width: 600px;
       margin: 0 auto;
@@ -296,11 +298,11 @@
     }
 
     .filter-tag {
-      padding: 10px 24px;
+      padding: 6px 16px;
       background: white;
       border: 2px solid transparent;
       border-radius: 30px;
-      font-size: 14px;
+      font-size: 10px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -367,19 +369,23 @@
 
     /* ==================== MASONRY GRID ==================== */
     .masonry-grid {
-      columns: 4;
-      column-gap: 30px;
-      max-width: 1400px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1200px;
       margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .memory-card {
-      break-inside: avoid;
-      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      height: 380px;
       background: white;
-      border-radius: 24px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 35px var(--shadow-color);
+      box-shadow: 0 6px 20px var(--shadow-color);
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
       position: relative;
@@ -397,12 +403,12 @@
 
     .memory-image {
       width: 100%;
-      height: auto;
-      min-height: 200px;
+      height: 200px;
       display: block;
       transition: transform 0.4s ease, opacity 0.3s ease;
       object-fit: cover;
       background: #f0f0f0;
+      flex-shrink: 0;
     }
 
     .memory-card:hover .memory-image {
@@ -410,31 +416,40 @@
     }
 
     .memory-content {
-      padding: 24px;
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .memory-date {
-      font-size: 12px;
+      font-size: 10px;
       color: var(--text-light);
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .memory-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: var(--text-primary);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       line-height: 1.3;
     }
 
     .memory-story {
-      font-size: 14px;
+      font-size: 12px;
       color: var(--text-secondary);
       line-height: 1.6;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      flex-grow: 1;
     }
 
     .memory-tags {
@@ -444,9 +459,9 @@
     }
 
     .memory-tag {
-      font-size: 11px;
-      padding: 6px 12px;
-      border-radius: 15px;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 12px;
       font-weight: 600;
       margin-right: 4px;
       margin-bottom: 4px;
@@ -462,16 +477,16 @@
 
     .memory-emotion {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 40px;
-      height: 40px;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 16px;
       backdrop-filter: blur(10px);
     }
 
@@ -515,7 +530,7 @@
 
     .modal-image {
       width: 100%;
-      height: 400px;
+      height: 300px;
       object-fit: cover;
       border-radius: 24px 24px 0 0;
     }
@@ -526,13 +541,13 @@
 
     .modal-title {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 1rem;
       color: var(--text-primary);
       margin-bottom: 16px;
     }
 
     .modal-story {
-      font-size: 16px;
+      font-size: 12px;
       color: var(--text-secondary);
       line-height: 1.7;
       margin-bottom: 24px;
@@ -563,14 +578,14 @@
 
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1200px) {
-      .masonry-grid { columns: 3; }
+      .masonry-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     @media (max-width: 768px) {
       .masonry-grid { 
-        columns: 2; 
-        column-gap: 15px; 
-        padding: 0 10px;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
+        padding: 0 15px;
       }
       .main-header { 
         padding: 0 15px; 
@@ -582,8 +597,8 @@
       }
       .memories-section { padding: 40px 15px; }
       .hero-section { height: 50vh; }
-      .hero-title { font-size: 2.2rem; }
-      .hero-subtitle { font-size: 1.2rem; }
+      .hero-title { font-size: 1.1rem; }
+      .hero-subtitle { font-size: 0.7rem; }
       .nav-modes { 
         flex-wrap: wrap; 
         gap: 5px;
@@ -591,10 +606,10 @@
       }
       .nav-mode {
         padding: 6px 12px;
-        font-size: 12px;
+        font-size: 10px;
       }
-      .logo-text { font-size: 18px; }
-      .logo-subtitle { font-size: 10px; margin-left: 42px; }
+      .logo-text { font-size: 14px; }
+      .logo-subtitle { font-size: 8px; margin-left: 36px; }
       .filter-bar { 
         gap: 8px; 
         flex-wrap: wrap;
@@ -602,33 +617,41 @@
         padding: 0 10px;
       }
       .filter-tag {
-        padding: 8px 16px;
-        font-size: 12px;
+        padding: 6px 14px;
+        font-size: 10px;
       }
       .memory-card {
-        margin-bottom: 15px;
+        height: 320px;
       }
       .memory-image {
-        height: 200px;
-        object-fit: cover;
-        width: 100%;
+        height: 160px;
       }
-      .section-title { font-size: 2rem; }
-      .section-subtitle { font-size: 1rem; padding: 0 15px; }
+      .section-title { font-size: 0.9rem; }
+      .section-subtitle { font-size: 0.7rem; padding: 0 15px; }
+      
+      .stories-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .favorites-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
     }
 
     @media (max-width: 480px) {
       .masonry-grid { 
-        columns: 1; 
+        grid-template-columns: 1fr; 
         padding: 0 15px;
         max-width: 100%;
+        gap: 15px;
       }
-      .hero-title { font-size: 1.8rem; }
-      .hero-subtitle { font-size: 1rem; }
+      .hero-title { font-size: 1rem; }
+      .hero-subtitle { font-size: 0.65rem; }
       .filter-bar { gap: 6px; }
       .filter-tag {
-        padding: 6px 12px;
-        font-size: 11px;
+        padding: 5px 10px;
+        font-size: 9px;
       }
       .main-header {
         height: auto;
@@ -639,27 +662,24 @@
         padding: 3px;
       }
       .nav-mode {
-        padding: 5px 10px;
-        font-size: 11px;
+        padding: 4px 8px;
+        font-size: 9px;
       }
       .memory-card {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 20px;
+        height: 350px;
       }
       .memory-image {
-        height: 250px;
-        object-fit: cover;
+        height: 180px;
       }
       .memory-content {
-        padding: 15px;
+        padding: 12px;
       }
       .memory-title {
-        font-size: 1.1rem;
+        font-size: 0.75rem;
       }
       .memory-story {
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: 10px;
+        line-height: 1.4;
       }
       .container {
         margin-top: 120px;
@@ -709,7 +729,7 @@
 
     .loading-text {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       color: white;
       margin-bottom: 32px;
       text-align: center;
@@ -748,6 +768,33 @@
        /* Touch-friendly improvements */
        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
        cursor: pointer;
+     }
+
+     /* Image loading states */
+     .memory-card:not(.image-loaded) .memory-image {
+       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+       background-size: 200% 100%;
+       animation: shimmer 2s infinite;
+     }
+
+     @keyframes shimmer {
+       0% { background-position: -200% 0; }
+       100% { background-position: 200% 0; }
+     }
+
+     .memory-card.image-error .memory-image {
+       display: none;
+     }
+
+     .memory-card.image-error::before {
+       content: '📸';
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       height: 200px;
+       font-size: 3rem;
+       background: #f5f5f5;
+       color: #ccc;
      }
 
      /* Touch-friendly button improvements */
@@ -809,9 +856,9 @@
        top: 0;
        background: var(--gradient-2);
        color: white;
-       padding: 8px 16px;
+       padding: 6px 12px;
        border-radius: 20px;
-       font-size: 12px;
+       font-size: 10px;
        font-weight: 600;
        white-space: nowrap;
        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
@@ -837,7 +884,7 @@
 
      .timeline-title {
        font-family: 'Playfair Display', serif;
-       font-size: 1.2rem;
+       font-size: 0.9rem;
        color: var(--text-primary);
        margin-bottom: 8px;
      }
@@ -845,7 +892,7 @@
      .timeline-story {
        color: var(--text-secondary);
        line-height: 1.6;
-       font-size: 14px;
+       font-size: 12px;
      }
 
 
@@ -857,21 +904,24 @@
      }
 
      .stories-grid {
-       max-width: 1000px;
+       max-width: 1200px;
        margin: 0 auto;
        display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-       gap: 30px;
+       grid-template-columns: repeat(2, 1fr);
+       gap: 20px;
      }
 
      .story-card {
        background: white;
-       border-radius: 20px;
-       padding: 30px;
-       box-shadow: 0 8px 25px var(--shadow-color);
+       border-radius: 16px;
+       padding: 20px;
+       box-shadow: 0 6px 20px var(--shadow-color);
        transition: all 0.8s ease;
-       opacity: 0;
-       transform: translateY(30px);
+       opacity: 1;
+       transform: translateY(0);
+       height: 300px;
+       display: flex;
+       flex-direction: column;
      }
 
      .story-card:hover {
@@ -895,22 +945,28 @@
 
      .story-title {
        font-family: 'Playfair Display', serif;
-       font-size: 1.3rem;
+       font-size: 0.95rem;
        color: var(--text-primary);
        flex-grow: 1;
      }
 
      .story-date {
-       font-size: 12px;
+       font-size: 10px;
        color: var(--text-light);
        font-weight: 500;
      }
 
      .story-text {
        color: var(--text-secondary);
-       line-height: 1.7;
-       margin-bottom: 20px;
-       font-size: 15px;
+       line-height: 1.6;
+       margin-bottom: 15px;
+       font-size: 12px;
+       flex-grow: 1;
+       overflow: hidden;
+       display: -webkit-box;
+       -webkit-line-clamp: 6;
+       line-clamp: 6;
+       -webkit-box-orient: vertical;
      }
 
      .story-tags {
@@ -920,8 +976,8 @@
      }
 
      .story-tag {
-       font-size: 11px;
-       padding: 6px 12px;
+       font-size: 9px;
+       padding: 4px 10px;
        border-radius: 15px;
        font-weight: 600;
        color: white;
@@ -943,18 +999,21 @@
        max-width: 1200px;
        margin: 0 auto;
        display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-       gap: 30px;
+       grid-template-columns: repeat(4, 1fr);
+       gap: 20px;
      }
 
      .favorite-card {
        background: white;
-       border-radius: 20px;
+       border-radius: 16px;
        overflow: hidden;
-       box-shadow: 0 8px 25px var(--shadow-color);
+       box-shadow: 0 6px 20px var(--shadow-color);
        transition: all 0.8s ease;
-       opacity: 0;
-       transform: scale(0.8);
+       opacity: 1;
+       transform: scale(1);
+       height: 320px;
+       display: flex;
+       flex-direction: column;
      }
 
      .favorite-card:hover {
@@ -964,8 +1023,9 @@
 
      .favorite-image-container {
         position: relative;
-       height: 200px;
+       height: 160px;
        overflow: hidden;
+       flex-shrink: 0;
      }
 
      .favorite-image {
@@ -1003,12 +1063,15 @@
      }
 
      .favorite-content {
-       padding: 25px;
+       padding: 16px;
+       flex: 1;
+       display: flex;
+       flex-direction: column;
      }
 
      .favorite-title {
        font-family: 'Playfair Display', serif;
-       font-size: 1.2rem;
+       font-size: 0.9rem;
        color: var(--text-primary);
        margin-bottom: 10px;
      }
@@ -1016,7 +1079,13 @@
      .favorite-story {
        color: var(--text-secondary);
        line-height: 1.6;
-       font-size: 14px;
+       font-size: 12px;
+       flex-grow: 1;
+       overflow: hidden;
+       display: -webkit-box;
+       -webkit-line-clamp: 3;
+       line-clamp: 3;
+       -webkit-box-orient: vertical;
      }
 
 
@@ -1053,7 +1122,7 @@
 
      .footer-logo {
        font-family: 'Playfair Display', serif;
-       font-size: 2rem;
+       font-size: 1.2rem;
        margin-bottom: 20px;
        display: flex;
        align-items: center;
@@ -1062,13 +1131,13 @@
      }
 
      .footer-logo-icon {
-       font-size: 2.5rem;
+       font-size: 1.5rem;
        animation: bounce 2s infinite;
      }
 
      .footer-quote {
        font-family: 'Dancing Script', cursive;
-       font-size: 1.3rem;
+       font-size: 0.95rem;
        margin-bottom: 30px;
        opacity: 0.9;
        font-style: italic;
@@ -1086,14 +1155,14 @@
      }
 
      .footer-stat-number {
-       font-size: 2rem;
+       font-size: 1.2rem;
        font-weight: 700;
        display: block;
        margin-bottom: 5px;
      }
 
      .footer-stat-label {
-       font-size: 12px;
+       font-size: 10px;
        opacity: 0.8;
        text-transform: uppercase;
        letter-spacing: 1px;
@@ -1107,7 +1176,7 @@
      }
 
      .footer-copyright {
-       font-size: 14px;
+       font-size: 11px;
        opacity: 0.7;
      }
 
@@ -1122,11 +1191,11 @@
        .timeline-item { padding-left: 50px; }
        .timeline-date { left: -15px; font-size: 10px; padding: 6px 12px; }
        .timeline-content { flex-direction: column; gap: 15px; }
-       .timeline-image { width: 100%; height: 180px; object-fit: cover; }
+       .timeline-image { width: 100%; height: 150px; object-fit: cover; }
        
        .stories-grid { 
          grid-template-columns: 1fr; 
-         gap: 20px;
+         gap: 15px;
          padding: 0 15px;
        }
        .story-header { 
@@ -1140,7 +1209,7 @@
        
        .favorites-grid { 
          grid-template-columns: 1fr; 
-         gap: 20px;
+         gap: 15px;
          padding: 0 15px;
        }
        .footer-stats { 
@@ -1170,21 +1239,27 @@
          padding: 4px 8px; 
        }
        .timeline-content { padding: 15px; }
-       .timeline-image { height: 150px; }
-       .timeline-title { font-size: 1rem; }
-       .timeline-story { font-size: 13px; }
+       .timeline-image { height: 120px; }
+       .timeline-title { font-size: 0.9rem; }
+       .timeline-story { font-size: 12px; }
        
-       .story-card { padding: 15px; }
-       .story-title { font-size: 1rem; }
-       .story-text { font-size: 13px; }
+       .story-card { 
+         padding: 15px; 
+         height: 250px;
+       }
+       .story-title { font-size: 0.9rem; }
+       .story-text { font-size: 12px; }
        
-       .favorite-card { margin-bottom: 15px; }
-       .favorite-content { padding: 15px; }
-       .favorite-title { font-size: 1rem; }
+       .favorite-card { 
+         height: 280px;
+       }
+       .favorite-content { padding: 12px; }
+       .favorite-title { font-size: 0.9rem; }
+       .favorite-story { font-size: 12px; }
        
-       .footer-logo { font-size: 1.5rem; }
-       .footer-quote { font-size: 1.1rem; }
-       .footer-stat-number { font-size: 1.5rem; }
+       .footer-logo { font-size: 1rem; }
+       .footer-quote { font-size: 0.85rem; }
+       .footer-stat-number { font-size: 1rem; }
      }
   </style>
 </head>
@@ -1227,7 +1302,7 @@
         <h1 class="hero-title">Every Moment Matters</h1>
         <p class="hero-subtitle">A living diary of love, loyalty, and endless adventures</p>
                  <div class="memory-counter">
-           <div class="counter-number" id="totalMemories">25</div>
+           <div class="counter-number" id="totalMemories">24</div>
            <div class="counter-label">Precious Memories</div>
       </div>
       </div>
@@ -1270,7 +1345,7 @@
        </div>
        <div class="footer-stats">
          <div class="footer-stat">
-           <span class="footer-stat-number">25</span>
+           <span class="footer-stat-number">24</span>
            <span class="footer-stat-label">Precious Memories</span>
          </div>
          <div class="footer-stat">
@@ -1505,18 +1580,9 @@
          tags: ['playful', 'energy', 'fun'],
          category: 'playful'
        },
+
        {
          id: 21,
-         image: 'thumbnail_IMG_8022 (1).jpg',
-         title: 'Double Trouble',
-         date: 'January 26, 2024',
-         story: 'Sometimes Henry gets so excited that one photo can\'t capture all his energy! This moment shows his playful spirit in motion - a blur of joy and enthusiasm that perfectly represents his zest for life.',
-         emotion: '⚡',
-         tags: ['silly', 'energy', 'motion'],
-         category: 'silly'
-       },
-       {
-         id: 22,
          image: 'thumbnail_IMG_8026.jpg',
          title: 'Weekend Warrior',
          date: 'January 24, 2024',
@@ -1526,7 +1592,7 @@
          category: 'adventure'
        },
        {
-         id: 23,
+         id: 22,
          image: 'thumbnail_IMG_8029.jpg',
          title: 'Gentle Soul',
          date: 'January 20, 2024',
@@ -1536,7 +1602,7 @@
          category: 'peaceful'
        },
        {
-         id: 24,
+         id: 23,
          image: 'thumbnail_IMG_8030.jpg',
          title: 'Perfect Moment',
          date: 'January 18, 2024',
@@ -1546,7 +1612,7 @@
          category: 'peaceful'
        },
        {
-         id: 25,
+         id: 24,
          image: 'GetAttachmentThumbnail.jpg',
          title: 'Memory Keeper',
          date: 'January 15, 2024',
@@ -1566,15 +1632,20 @@
       }
 
       init() {
-         console.log('Initializing Henry Memory Diary...'); // Debug
-         console.log('Total memories loaded:', this.memories.length); // Debug
-        this.setupEventListeners();
-         this.createParticles();
-         this.renderMemories(); // This should show all memories initially
-         this.setupScrollAnimations();
-        this.hideLoading();
-         console.log('Initialization complete!'); // Debug
-       }
+        try {
+          console.log('Initializing Henry Memory Diary...');
+          console.log('Total memories loaded:', this.memories.length);
+          this.setupEventListeners();
+          this.createParticles();
+          this.renderMemories();
+          this.setupScrollAnimations();
+          this.hideLoading();
+          console.log('Initialization complete!');
+        } catch (error) {
+          console.error('Error during initialization:', error);
+          this.hideLoading();
+        }
+      }
 
              hideLoading() {
          // Remove loading screen immediately - no annoying wait time!
@@ -1639,89 +1710,194 @@
           }
         });
 
-        // Keyboard shortcuts
+        // Keyboard shortcuts and accessibility
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
             this.closeModal();
           }
+          
+          // Number keys for quick filter switching
+          const filterMap = {
+            '1': 'all',
+            '2': 'playful', 
+            '3': 'peaceful',
+            '4': 'adventure',
+            '5': 'cozy',
+            '6': 'silly'
+          };
+          
+          if (filterMap[e.key] && this.currentMode === 'memories') {
+            e.preventDefault();
+            const filterTag = document.querySelector(`[data-filter="${filterMap[e.key]}"]`);
+            if (filterTag) {
+              filterTag.click();
+            }
+          }
         });
       }
 
-             renderMemories() {
-         const grid = document.getElementById('masonryGrid');
-         const filteredMemories = this.currentFilter === 'all' 
-           ? this.memories 
-           : this.memories.filter(memory => memory.category === this.currentFilter);
+      renderMemories() {
+        try {
+          const grid = document.getElementById('masonryGrid');
+          if (!grid) {
+            console.error('Masonry grid not found');
+            return;
+          }
 
-         grid.innerHTML = '';
+          const filteredMemories = this.currentFilter === 'all' 
+            ? this.memories 
+            : this.memories.filter(memory => memory?.category === this.currentFilter);
 
-         // Debug: log the filtering
-         console.log('Current filter:', this.currentFilter);
-         console.log('Filtered memories count:', filteredMemories.length);
+          grid.innerHTML = '';
 
-         filteredMemories.forEach((memory, index) => {
-           const card = this.createMemoryCard(memory, index);
-           grid.appendChild(card);
-         });
+          if (filteredMemories.length === 0) {
+            grid.innerHTML = `
+              <div class="memory-card" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                <div class="memory-content">
+                  <h3 class="memory-title">No memories found</h3>
+                  <p class="memory-story">No memories match the current filter. Try selecting "All Memories".</p>
+                </div>
+              </div>
+            `;
+            return;
+          }
 
-         document.getElementById('totalMemories').textContent = filteredMemories.length;
-         
-         // Re-trigger scroll animations for newly rendered cards
-         setTimeout(() => {
-           this.setupScrollAnimations();
-         }, 100);
-       }
+          const fragment = document.createDocumentFragment();
+          filteredMemories.forEach((memory, index) => {
+            if (memory && memory.image) {
+              try {
+                const card = this.createMemoryCard(memory, index);
+                fragment.appendChild(card);
+              } catch (error) {
+                console.error('Error creating memory card for:', memory?.title || 'unknown', error);
+              }
+            }
+          });
+          
+          grid.appendChild(fragment);
 
-             createMemoryCard(memory, index) {
-         const card = document.createElement('div');
-         card.className = 'memory-card fade-in visible'; // Make visible immediately
-         card.style.animationDelay = `${index * 0.1}s`;
-         
-                    card.innerHTML = `
-           <div class="memory-emotion">${memory.emotion}</div>
-           <img class="memory-image" 
-                src="${memory.image}" 
-                alt="${memory.title}" 
-                loading="lazy" 
-                onerror="this.style.display='none'; console.log('Image failed to load: ${memory.image}'); this.nextElementSibling.style.paddingTop='20px';"
-                onload="this.style.opacity='1';"
-                style="opacity: 0; transition: opacity 0.3s ease;">
-           <div class="memory-content">
-             <div class="memory-date">${memory.date}</div>
-             <h3 class="memory-title">${memory.title}</h3>
-             <p class="memory-story">${memory.story.substring(0, 120)}...</p>
-             <div class="memory-tags">
-               ${memory.tags.map(tag => `<span class="memory-tag">${tag}</span>`).join('')}
-             </div>
-           </div>
-         `;
+          // Update counter in both locations
+          const updateCounter = (elementId) => {
+            const element = document.getElementById(elementId);
+            if (element) {
+              element.textContent = filteredMemories.length;
+            }
+          };
+          
+          updateCounter('totalMemories');
+          document.querySelectorAll('.footer-stat-number').forEach(el => {
+            if (el.nextElementSibling?.textContent.includes('Precious Memories')) {
+              el.textContent = filteredMemories.length;
+            }
+          });
+          
+          // Setup animations with a small delay for DOM to settle
+          requestAnimationFrame(() => {
+            this.setupScrollAnimations();
+          });
+        } catch (error) {
+          console.error('Error rendering memories:', error);
+          // Fallback display
+          const grid = document.getElementById('masonryGrid');
+          if (grid) {
+            grid.innerHTML = `
+              <div class="memory-card" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                <div class="memory-content">
+                  <h3 class="memory-title">Error Loading Memories</h3>
+                  <p class="memory-story">There was an error loading the memory collection. Please refresh the page.</p>
+                </div>
+              </div>
+            `;
+          }
+        }
+      }
 
-         card.addEventListener('click', () => {
-           this.openModal(memory);
-         });
+      createMemoryCard(memory, index) {
+        try {
+          const card = document.createElement('div');
+          card.className = 'memory-card fade-in';
+          card.style.animationDelay = `${index * 0.1}s`;
+          
+          const imageLoadHandler = `
+            this.style.opacity='1'; 
+            this.parentElement.classList.add('image-loaded');
+          `;
+          
+          const imageErrorHandler = `
+            this.style.display='none'; 
+            this.parentElement.classList.add('image-error');
+            console.warn('Image failed to load: ${memory.image}');
+          `;
+          
+          card.innerHTML = `
+            <div class="memory-emotion">${memory.emotion || '📸'}</div>
+            <img class="memory-image" 
+                 src="${memory.image}" 
+                 alt="${memory.title || 'Memory image'}" 
+                 loading="lazy" 
+                 onerror="${imageErrorHandler}"
+                 onload="${imageLoadHandler}"
+                 style="opacity: 0; transition: opacity 0.5s ease;">
+            <div class="memory-content">
+              <div class="memory-date">${memory.date || 'Date unknown'}</div>
+              <h3 class="memory-title">${memory.title || 'Untitled Memory'}</h3>
+              <p class="memory-story">${(memory.story || 'A precious memory...').substring(0, 120)}${memory.story && memory.story.length > 120 ? '...' : ''}</p>
+              <div class="memory-tags">
+                ${(memory.tags || []).map(tag => `<span class="memory-tag">${tag}</span>`).join('')}
+              </div>
+            </div>
+          `;
 
-         // Debug: Log card creation
-         console.log('Created card for:', memory.title);
+          card.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.openModal(memory);
+          });
 
-         return card;
-       }
+          return card;
+        } catch (error) {
+          console.error('Error creating memory card for:', memory?.title || 'unknown', error);
+          // Return a simple fallback card
+          const fallbackCard = document.createElement('div');
+          fallbackCard.className = 'memory-card';
+          fallbackCard.innerHTML = `
+            <div class="memory-content">
+              <h3 class="memory-title">Memory Unavailable</h3>
+              <p class="memory-story">This memory couldn't be loaded.</p>
+            </div>
+          `;
+          return fallbackCard;
+        }
+      }
 
       openModal(memory) {
-        const modal = document.getElementById('modalOverlay');
-        const modalImage = document.getElementById('modalImage');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalStory = document.getElementById('modalStory');
-        const modalTags = document.getElementById('modalTags');
+        try {
+          const modal = document.getElementById('modalOverlay');
+          const modalImage = document.getElementById('modalImage');
+          const modalTitle = document.getElementById('modalTitle');
+          const modalStory = document.getElementById('modalStory');
+          const modalTags = document.getElementById('modalTags');
 
-        modalImage.src = memory.image;
-        modalTitle.textContent = memory.title;
-        modalStory.textContent = memory.story;
-        modalTags.innerHTML = memory.tags.map(tag => 
-          `<span class="memory-tag">${tag}</span>`
-        ).join('');
+          if (!modal || !modalImage || !modalTitle || !modalStory || !modalTags) {
+            console.error('Modal elements not found');
+            return;
+          }
 
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+          modalImage.src = memory.image || '';
+          modalImage.alt = memory.title || 'Memory image';
+          modalTitle.textContent = memory.title || 'Untitled Memory';
+          modalStory.textContent = memory.story || 'No story available for this memory.';
+          modalTags.innerHTML = (memory.tags || []).map(tag => 
+            `<span class="memory-tag">${tag}</span>`
+          ).join('');
+
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          
+          // Focus trap for accessibility
+          modal.focus();
+        } catch (error) {
+          console.error('Error opening modal:', error);
+        }
       }
 
       closeModal() {
@@ -1844,108 +2020,85 @@
          }, 100);
        }
 
-                createTimelineHTML() {
-           return this.memories.map((memory, index) => {
-             // Trigger animation after creation
-             setTimeout(() => {
-               const timelineItem = document.querySelector(`.timeline-item:nth-child(${index + 1})`);
-               if (timelineItem) {
-                 timelineItem.style.opacity = '1';
-                 timelineItem.style.transform = 'translateX(0)';
-               }
-             }, index * 100);
-             
-             return `
-               <div class="timeline-item" style="animation-delay: ${index * 0.1}s; opacity: 0; transform: translateX(-50px);">
-                 <div class="timeline-date">${memory.date}</div>
-                 <div class="timeline-content">
-                   <img src="${memory.image}" alt="${memory.title}" class="timeline-image">
-                   <div class="timeline-info">
-                     <h3 class="timeline-title">${memory.title} ${memory.emotion}</h3>
-                     <p class="timeline-story">${memory.story}</p>
-                   </div>
-                 </div>
-               </div>
-             `;
-           }).join('');
-         }
-
-                createStoriesHTML() {
-           return this.memories.map((memory, index) => {
-             // Trigger animation after a small delay
-             setTimeout(() => {
-               const storyCard = document.querySelector(`.story-card:nth-child(${index + 1})`);
-               if (storyCard) {
-                 storyCard.style.opacity = '1';
-                 storyCard.style.transform = 'translateY(0)';
-               }
-             }, index * 50);
-             
-             return `
-               <div class="story-card" style="animation-delay: ${index * 0.05}s">
-                 <div class="story-header">
-                   <span class="story-emotion">${memory.emotion}</span>
-                   <h3 class="story-title">${memory.title}</h3>
-                   <span class="story-date">${memory.date}</span>
-                 </div>
-                 <p class="story-text">${memory.story}</p>
-                 <div class="story-tags">
-                   ${memory.tags.map(tag => `<span class="story-tag">${tag}</span>`).join('')}
-                 </div>
-               </div>
-             `;
-           }).join('');
-         }
-
-                createFavoriteCardHTML(memory, index) {
-           // Trigger animation after a small delay
-        setTimeout(() => {
-             const favoriteCard = document.querySelector(`.favorite-card:nth-child(${index + 1})`);
-             if (favoriteCard) {
-               favoriteCard.style.opacity = '1';
-               favoriteCard.style.transform = 'scale(1)';
-             }
-           }, index * 200);
-           
-           return `
-             <div class="favorite-card" style="animation-delay: ${index * 0.2}s">
-               <div class="favorite-image-container">
-                 <img src="${memory.image}" alt="${memory.title}" class="favorite-image">
-                 <div class="favorite-overlay">
-                   <span class="favorite-emotion">${memory.emotion}</span>
-                 </div>
-               </div>
-               <div class="favorite-content">
-                 <h3 class="favorite-title">${memory.title}</h3>
-                 <p class="favorite-story">${memory.story.substring(0, 80)}...</p>
+       createTimelineHTML() {
+         return this.memories.map((memory, index) => `
+           <div class="timeline-item fade-in" style="animation-delay: ${index * 0.1}s;">
+             <div class="timeline-date">${memory.date}</div>
+             <div class="timeline-content">
+               <img src="${memory.image}" alt="${memory.title}" class="timeline-image">
+               <div class="timeline-info">
+                 <h3 class="timeline-title">${memory.title} ${memory.emotion}</h3>
+                 <p class="timeline-story">${memory.story}</p>
                </div>
              </div>
-           `;
-         }
+           </div>
+         `).join('');
+       }
 
-             setupScrollAnimations() {
-         const observerOptions = {
-           threshold: 0.1,
-           rootMargin: '0px 0px -50px 0px'
-         };
+       createStoriesHTML() {
+         return this.memories.map((memory, index) => `
+           <div class="story-card" style="animation-delay: ${index * 0.05}s">
+             <div class="story-header">
+               <span class="story-emotion">${memory.emotion}</span>
+               <h3 class="story-title">${memory.title}</h3>
+               <span class="story-date">${memory.date}</span>
+             </div>
+             <p class="story-text">${memory.story}</p>
+             <div class="story-tags">
+               ${memory.tags.map(tag => `<span class="story-tag">${tag}</span>`).join('')}
+             </div>
+           </div>
+         `).join('');
+       }
 
-         // Clear any existing observer
-         if (this.scrollObserver) {
-           this.scrollObserver.disconnect();
-         }
+       createFavoriteCardHTML(memory, index) {
+         return `
+           <div class="favorite-card" style="animation-delay: ${index * 0.2}s">
+             <div class="favorite-image-container">
+               <img src="${memory.image}" alt="${memory.title}" class="favorite-image">
+               <div class="favorite-overlay">
+                 <span class="favorite-emotion">${memory.emotion}</span>
+               </div>
+             </div>
+             <div class="favorite-content">
+               <h3 class="favorite-title">${memory.title}</h3>
+               <p class="favorite-story">${memory.story.substring(0, 80)}...</p>
+             </div>
+           </div>
+         `;
+       }
 
-         this.scrollObserver = new IntersectionObserver((entries) => {
-           entries.forEach(entry => {
-             if (entry.isIntersecting) {
-               entry.target.classList.add('visible');
-             }
-           });
-         }, observerOptions);
+      setupScrollAnimations() {
+        try {
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+          };
 
-         // Observe all fade-in elements, including newly created memory cards
-         document.querySelectorAll('.fade-in').forEach(el => {
-           this.scrollObserver.observe(el);
-         });
+          // Only create a new observer if one doesn't exist
+          if (!this.scrollObserver) {
+            this.scrollObserver = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('visible');
+                  // Stop observing once animated to improve performance
+                  this.scrollObserver.unobserve(entry.target);
+                }
+              });
+            }, observerOptions);
+          }
+
+          // Observe new elements only
+          document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+            this.scrollObserver.observe(el);
+          });
+        } catch (error) {
+          console.error('Error setting up scroll animations:', error);
+          // Fallback: show all elements immediately
+          document.querySelectorAll('.fade-in').forEach(el => {
+            el.classList.add('visible');
+          });
+        }
       }
     }
 
@@ -1954,18 +2107,25 @@
       new HenryMemoryDiary();
     });
 
-    // Additional visual enhancements
+    // Additional visual enhancements with throttling for better performance
+    let mouseTimeout;
     document.addEventListener('mousemove', (e) => {
-      const particles = document.querySelectorAll('.particle');
-      const mouseX = e.clientX / window.innerWidth;
-      const mouseY = e.clientY / window.innerHeight;
+      if (mouseTimeout) return;
+      
+      mouseTimeout = setTimeout(() => {
+        const particles = document.querySelectorAll('.particle');
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
 
-      particles.forEach((particle, index) => {
-        const speed = (index % 3 + 1) * 0.5;
-        const x = mouseX * speed;
-        const y = mouseY * speed;
-        particle.style.transform = `translate(${x}px, ${y}px)`;
-      });
+        particles.forEach((particle, index) => {
+          const speed = (index % 3 + 1) * 0.3;
+          const x = mouseX * speed;
+          const y = mouseY * speed;
+          particle.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        
+        mouseTimeout = null;
+      }, 16); // ~60fps throttling
     });
   </script>
 
