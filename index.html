@@ -3,29 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Henry’s Dogs</title>
+  <title>Henry’s Dogs – A Memory Diary</title>
   <style>
     :root {
-      --overlay-color: rgba(0, 0, 0, 0.6);
-      --glass-bg: rgba(255, 255, 255, 0.08);
-      --glow-color: #0ff;
+      --accent: #FFD166;
+      --glass: rgba(255, 255, 255, 0.07);
+      --bg-dark: #0d0d0d;
+      --white: #f1f1f1;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--white);
       overflow: hidden;
-      background-color: #000;
-      color: #fff;
     }
 
-    .bg-container {
+    .bg-wrapper {
       position: fixed;
       width: 100%;
       height: 100%;
@@ -33,56 +34,69 @@
       overflow: hidden;
     }
 
-    .bg-slide {
+    .bg-image {
       position: absolute;
       width: 100%;
       height: 100%;
       background-size: cover;
       background-position: center;
       opacity: 0;
-      transition: opacity 2s ease-in-out, transform 15s ease-in-out;
-      transform: scale(1.1);
+      transition: opacity 2s ease-in-out, transform 12s ease-in-out;
+      transform: scale(1.08);
     }
 
-    .bg-slide.active {
+    .bg-image.active {
       opacity: 1;
       transform: scale(1);
     }
 
-    .overlay {
+    .glass-overlay {
+      position: relative;
       width: 100%;
       height: 100%;
-      background: var(--overlay-color);
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.3);
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 2rem;
+    }
+
+    .content-box {
+      max-width: 90%;
+      background: var(--glass);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
       text-align: center;
     }
 
-    .glass-box {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      border-radius: 16px;
-      padding: 2rem 3rem;
-      box-shadow: 0 0 20px var(--glow-color);
-      max-width: 90%;
+    h1 {
+      font-size: 2.7rem;
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--accent);
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--glow-color);
-      text-shadow: 0 0 10px var(--glow-color);
+    .subtitle {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #ccc;
     }
 
     .quote {
-      font-size: 1.2rem;
-      margin-top: 1.5rem;
-      color: #ccc;
-      font-style: italic;
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      color: #aaa;
       transition: opacity 1s ease-in-out;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.8rem;
+      color: #666;
     }
 
     @media (max-width: 768px) {
@@ -93,53 +107,48 @@
       .quote {
         font-size: 1rem;
       }
-
-      .glass-box {
-        padding: 1.5rem 2rem;
-      }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-container">
-    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');"></div>
-    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1483794344563-d27a8d18014e?auto=format&fit=crop&w=1600&q=80');"></div>
-    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=1600&q=80');"></div>
+  <div class="bg-wrapper">
+    <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1483794344563-d27a8d18014e?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=80');"></div>
   </div>
 
-  <div class="overlay">
-    <div class="glass-box">
+  <div class="glass-overlay">
+    <div class="content-box">
       <h1>Henry’s Dogs</h1>
-      <p>This is a rotating window into vision, connection, and cosmic chill. Inspired by the frequencies Henry receives and shares across continents.</p>
-      <div class="quote" id="quoteBox">"Photos. I always shoot some off messages."</div>
+      <div class="subtitle">A memory diary. Each photo is a story, a stray, a return.</div>
+      <div class="quote" id="quoteBox">“Photos. I always shoot some off messages.”</div>
     </div>
+    <footer>Site by Kay for Henry — Where vision rotates</footer>
   </div>
 
   <script>
-    // Background rotation
-    const slides = document.querySelectorAll('.bg-slide');
-    let currentSlide = 0;
+    const bgSlides = document.querySelectorAll('.bg-image');
+    let current = 0;
 
-    function rotateSlides() {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === currentSlide) slide.classList.add('active');
+    function rotateImages() {
+      bgSlides.forEach((el, i) => {
+        el.classList.remove('active');
+        if (i === current) el.classList.add('active');
       });
-      currentSlide = (currentSlide + 1) % slides.length;
+      current = (current + 1) % bgSlides.length;
     }
 
-    rotateSlides();
-    setInterval(rotateSlides, 10000);
+    setInterval(rotateImages, 9000);
+    rotateImages();
 
-    // Quote rotation
     const quotes = [
-      `"Photos. I always shoot some off messages."`,
-      `"Kind of an added connection."`,
-      `"Some algorithm, or maybe just universal pull."`,
-      `"Move to the front of the line."`,
-      `"This ain’t no pipe dream."`,
-      `"Rotating backgrounds, soulful energy."`
+      "“Photos. I always shoot some off messages.”",
+      "“Kind of an added connection.”",
+      "“Move to the front of the line.”",
+      "“Each dog is a memory. Some bark back.”",
+      "“The universe leaves a photo trail.”",
+      "“Not a pipe dream — just a signal.”"
     ];
 
     const quoteBox = document.getElementById('quoteBox');
@@ -149,7 +158,7 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       quoteBox.style.opacity = 0;
       setTimeout(() => {
-        quoteBox.innerText = quotes[quoteIndex];
+        quoteBox.textContent = quotes[quoteIndex];
         quoteBox.style.opacity = 1;
       }, 600);
     }
