@@ -3,13 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Henry’s Dogs – A Memory Diary</title>
+  <title>Henry's Living Memory Diary</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+    
     :root {
-      --accent: #FFD166;
-      --glass: rgba(255, 255, 255, 0.07);
-      --bg-dark: #0d0d0d;
-      --white: #f1f1f1;
+      --electric-blue: #00d4ff;
+      --sunset-orange: #ff6b35;
+      --vibrant-purple: #8b5cf6;
+      --lime-green: #84cc16;
+      --hot-pink: #ec4899;
+      --golden-yellow: #fbbf24;
+      --deep-teal: #0f766e;
+      --warm-coral: #fb7185;
+      --rich-indigo: #4f46e5;
+      --emerald: #10b981;
+      --soft-cream: #fef7ed;
+      --pure-white: #ffffff;
+      --charcoal: #1f2937;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-light: #9ca3af;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --shadow-heavy: rgba(0, 0, 0, 0.25);
+      --gradient-1: linear-gradient(135deg, var(--electric-blue), var(--vibrant-purple));
+      --gradient-2: linear-gradient(135deg, var(--sunset-orange), var(--hot-pink));
+      --gradient-3: linear-gradient(135deg, var(--lime-green), var(--emerald));
+      --gradient-4: linear-gradient(135deg, var(--golden-yellow), var(--warm-coral));
     }
 
     * {
@@ -20,150 +40,1761 @@
 
     html, body {
       height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--white);
-      overflow: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #fef7ed 0%, #f0f9ff 100%);
+      color: var(--text-primary);
+      overflow-x: hidden;
     }
 
-    .bg-wrapper {
+    /* ==================== HEADER ==================== */
+    .main-header {
       position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(25px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: white;
+      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4); }
+      to { box-shadow: 0 8px 35px rgba(255, 107, 53, 0.6); }
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .logo-subtitle {
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 400;
+      margin-left: 52px;
+      margin-top: -8px;
+    }
+
+    /* ==================== NAVIGATION ==================== */
+    .nav-modes {
+      display: flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 6px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-mode {
+      padding: 8px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--text-secondary);
+      position: relative;
       overflow: hidden;
     }
 
-    .bg-image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 2s ease-in-out, transform 12s ease-in-out;
-      transform: scale(1.08);
+    .nav-mode.active {
+      background: var(--gradient-1);
+      color: white;
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+      transform: translateY(-2px);
     }
 
-    .bg-image.active {
+    .nav-mode:hover:not(.active) {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    /* ==================== MAIN CONTAINER ==================== */
+    .container {
+      margin-top: 80px;
+      min-height: calc(100vh - 80px);
+      position: relative;
+    }
+
+    /* ==================== HERO SECTION ==================== */
+    .hero-section {
+      height: 60vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 70%),
+        var(--gradient-1);
+      animation: backgroundShift 8s ease-in-out infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { 
+        background: 
+          radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+          var(--gradient-1);
+      }
+      50% { 
+        background: 
+          radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 30% 70%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+          var(--gradient-2);
+      }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: white;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 32px;
+    }
+
+    .memory-counter {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(15px);
+      padding: 20px 40px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: inline-block;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
+      50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); }
+    }
+
+    .counter-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .counter-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 4px;
+    }
+
+    /* ==================== FLOATING PARTICLES ==================== */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+    }
+
+    /* ==================== MEMORY GRID ==================== */
+    .memories-section {
+      padding: 80px 40px;
+      background: var(--soft-cream);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ==================== FILTER BAR ==================== */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tag {
+      padding: 10px 24px;
+      background: white;
+      border: 2px solid transparent;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--text-secondary);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-tag:nth-child(1) { border-color: var(--electric-blue); }
+    .filter-tag:nth-child(2) { border-color: var(--lime-green); }
+    .filter-tag:nth-child(3) { border-color: var(--vibrant-purple); }
+    .filter-tag:nth-child(4) { border-color: var(--sunset-orange); }
+    .filter-tag:nth-child(5) { border-color: var(--hot-pink); }
+    .filter-tag:nth-child(6) { border-color: var(--golden-yellow); }
+
+    .filter-tag.active:nth-child(1),
+    .filter-tag:hover:nth-child(1) {
+      background: var(--electric-blue);
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 212, 255, 0.4);
+    }
+
+    .filter-tag.active:nth-child(2),
+    .filter-tag:hover:nth-child(2) {
+      background: var(--lime-green);
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(132, 204, 22, 0.4);
+    }
+
+    .filter-tag.active:nth-child(3),
+    .filter-tag:hover:nth-child(3) {
+      background: var(--vibrant-purple);
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    .filter-tag.active:nth-child(4),
+    .filter-tag:hover:nth-child(4) {
+      background: var(--sunset-orange);
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
+    }
+
+    .filter-tag.active:nth-child(5),
+    .filter-tag:hover:nth-child(5) {
+      background: var(--hot-pink);
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4);
+    }
+
+    .filter-tag.active:nth-child(6),
+    .filter-tag:hover:nth-child(6) {
+      background: var(--golden-yellow);
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(251, 191, 36, 0.4);
+    }
+
+    /* ==================== MASONRY GRID ==================== */
+    .masonry-grid {
+      columns: 4;
+      column-gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .memory-card {
+      break-inside: avoid;
+      margin-bottom: 30px;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 35px var(--shadow-color);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .memory-card:hover {
+      transform: translateY(-12px) rotate(1deg);
+      box-shadow: 0 25px 50px var(--shadow-heavy);
+    }
+
+    .memory-card:nth-child(odd):hover {
+      transform: translateY(-12px) rotate(-1deg);
+    }
+
+    .memory-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .memory-card:hover .memory-image {
+      transform: scale(1.05);
+    }
+
+    .memory-content {
+      padding: 24px;
+    }
+
+    .memory-date {
+      font-size: 12px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .memory-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .memory-story {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .memory-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .memory-tag {
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-weight: 600;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      color: white;
+    }
+
+    .memory-tag:nth-child(1) { background: var(--electric-blue); }
+    .memory-tag:nth-child(2) { background: var(--lime-green); }
+    .memory-tag:nth-child(3) { background: var(--vibrant-purple); }
+    .memory-tag:nth-child(4) { background: var(--sunset-orange); }
+    .memory-tag:nth-child(5) { background: var(--hot-pink); }
+    .memory-tag:nth-child(6) { background: var(--golden-yellow); }
+
+    .memory-emotion {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* ==================== MODAL ==================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-overlay.active {
       opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 24px;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.4s ease;
+    }
+
+    .modal-overlay.active .modal-content {
       transform: scale(1);
     }
 
-    .glass-overlay {
-      position: relative;
+    .modal-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .modal-body {
+      padding: 40px;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .modal-story {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .close-modal:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1200px) {
+      .masonry-grid { columns: 3; }
+    }
+
+    @media (max-width: 768px) {
+      .masonry-grid { columns: 2; column-gap: 20px; }
+      .main-header { padding: 0 20px; }
+      .memories-section { padding: 60px 20px; }
+      .hero-title { font-size: 2.5rem; }
+      .nav-modes { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 480px) {
+      .masonry-grid { columns: 1; }
+      .hero-title { font-size: 2rem; }
+      .filter-bar { gap: 8px; }
+    }
+
+    /* ==================== LOADING ANIMATION ==================== */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      backdrop-filter: blur(10px);
-      background-color: rgba(0, 0, 0, 0.3);
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+        var(--gradient-1);
+      z-index: 3000;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      transition: opacity 0.8s ease;
+      animation: loadingBackground 3s ease-in-out infinite;
     }
 
-    .content-box {
-      max-width: 90%;
-      background: var(--glass);
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+    @keyframes loadingBackground {
+      0%, 100% { 
+        background: 
+          radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.4) 0%, transparent 50%),
+          var(--gradient-1);
+      }
+      50% { 
+        background: 
+          radial-gradient(circle at 70% 40%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 30% 60%, rgba(236, 72, 153, 0.4) 0%, transparent 50%),
+          var(--gradient-2);
+      }
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 32px;
       text-align: center;
     }
 
-    h1 {
-      font-size: 2.7rem;
-      color: var(--accent);
-      text-shadow: 0 0 5px var(--accent);
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
 
-    .subtitle {
-      margin: 1rem 0;
-      font-size: 1.1rem;
-      font-style: italic;
-      color: #ccc;
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    .quote {
-      margin-top: 2rem;
-      font-size: 1.1rem;
-      color: #aaa;
-      transition: opacity 1s ease-in-out;
-    }
+    /* ==================== SCROLL ANIMATIONS ==================== */
+         .fade-in {
+       opacity: 0;
+       transform: translateY(30px);
+       transition: all 0.8s ease;
+     }
 
-    footer {
-      position: absolute;
-      bottom: 10px;
-      font-size: 0.8rem;
-      color: #666;
-    }
+     .fade-in.visible {
+       opacity: 1;
+       transform: translateY(0);
+     }
 
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
+     /* Force memory cards to be visible if animation fails */
+     .memory-card {
+       opacity: 1 !important;
+       transform: translateY(0) !important;
+     }
+
+     /* Mode sections */
+     .mode-section {
+       transition: all 0.5s ease;
+     }
+
+     /* ==================== TIMELINE SECTION ==================== */
+     .timeline-section {
+       padding: 80px 40px;
+       background: var(--soft-cream);
+     }
+
+     .timeline-container {
+       max-width: 800px;
+       margin: 0 auto;
+       position: relative;
+     }
+
+     .timeline-container::before {
+       content: '';
+       position: absolute;
+       left: 30px;
+       top: 0;
+       bottom: 0;
+       width: 4px;
+       background: var(--gradient-1);
+       border-radius: 2px;
+     }
+
+     .timeline-item {
+       position: relative;
+        margin-bottom: 40px;
+       padding-left: 80px;
+       transition: all 0.8s ease;
+     }
+
+     .timeline-date {
+       position: absolute;
+       left: -20px;
+       top: 0;
+       background: var(--gradient-2);
+       color: white;
+       padding: 8px 16px;
+       border-radius: 20px;
+       font-size: 12px;
+       font-weight: 600;
+       white-space: nowrap;
+       box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+     }
+
+     .timeline-content {
+       background: white;
+       border-radius: 16px;
+       padding: 20px;
+       box-shadow: 0 8px 25px var(--shadow-color);
+       display: flex;
+        gap: 20px;
+        align-items: flex-start;
       }
 
-      .quote {
-        font-size: 1rem;
-      }
-    }
+     .timeline-image {
+       width: 80px;
+       height: 80px;
+       border-radius: 12px;
+       object-fit: cover;
+       flex-shrink: 0;
+     }
+
+     .timeline-title {
+       font-family: 'Playfair Display', serif;
+       font-size: 1.2rem;
+       color: var(--text-primary);
+       margin-bottom: 8px;
+     }
+
+     .timeline-story {
+       color: var(--text-secondary);
+       line-height: 1.6;
+       font-size: 14px;
+     }
+
+
+
+     /* ==================== STORIES SECTION ==================== */
+     .stories-section {
+       padding: 80px 40px;
+       background: var(--soft-cream);
+     }
+
+     .stories-grid {
+       max-width: 1000px;
+       margin: 0 auto;
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+       gap: 30px;
+     }
+
+     .story-card {
+       background: white;
+       border-radius: 20px;
+       padding: 30px;
+       box-shadow: 0 8px 25px var(--shadow-color);
+       transition: all 0.8s ease;
+       opacity: 0;
+       transform: translateY(30px);
+     }
+
+     .story-card:hover {
+       transform: translateY(-5px);
+       box-shadow: 0 15px 35px var(--shadow-heavy);
+     }
+
+     .story-header {
+       display: flex;
+       align-items: center;
+       gap: 15px;
+       margin-bottom: 20px;
+       padding-bottom: 15px;
+       border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+     }
+
+     .story-emotion {
+       font-size: 2rem;
+       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+     }
+
+     .story-title {
+       font-family: 'Playfair Display', serif;
+       font-size: 1.3rem;
+       color: var(--text-primary);
+       flex-grow: 1;
+     }
+
+     .story-date {
+       font-size: 12px;
+       color: var(--text-light);
+       font-weight: 500;
+     }
+
+     .story-text {
+       color: var(--text-secondary);
+       line-height: 1.7;
+       margin-bottom: 20px;
+       font-size: 15px;
+     }
+
+     .story-tags {
+       display: flex;
+       gap: 8px;
+       flex-wrap: wrap;
+     }
+
+     .story-tag {
+       font-size: 11px;
+       padding: 6px 12px;
+       border-radius: 15px;
+       font-weight: 600;
+       color: white;
+     }
+
+     .story-tag:nth-child(1) { background: var(--electric-blue); }
+     .story-tag:nth-child(2) { background: var(--lime-green); }
+     .story-tag:nth-child(3) { background: var(--vibrant-purple); }
+
+
+
+     /* ==================== FAVORITES SECTION ==================== */
+     .favorites-section {
+       padding: 80px 40px;
+       background: var(--soft-cream);
+     }
+
+     .favorites-grid {
+       max-width: 1200px;
+       margin: 0 auto;
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+       gap: 30px;
+     }
+
+     .favorite-card {
+       background: white;
+       border-radius: 20px;
+       overflow: hidden;
+       box-shadow: 0 8px 25px var(--shadow-color);
+       transition: all 0.8s ease;
+       opacity: 0;
+       transform: scale(0.8);
+     }
+
+     .favorite-card:hover {
+       transform: translateY(-10px) scale(1.02);
+       box-shadow: 0 20px 40px var(--shadow-heavy);
+     }
+
+     .favorite-image-container {
+        position: relative;
+       height: 200px;
+       overflow: hidden;
+     }
+
+     .favorite-image {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       transition: transform 0.5s ease;
+     }
+
+     .favorite-card:hover .favorite-image {
+       transform: scale(1.1);
+     }
+
+     .favorite-overlay {
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: var(--gradient-1);
+       opacity: 0;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       transition: opacity 0.3s ease;
+     }
+
+     .favorite-card:hover .favorite-overlay {
+       opacity: 0.9;
+     }
+
+     .favorite-emotion {
+       font-size: 3rem;
+       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+     }
+
+     .favorite-content {
+       padding: 25px;
+     }
+
+     .favorite-title {
+       font-family: 'Playfair Display', serif;
+       font-size: 1.2rem;
+       color: var(--text-primary);
+       margin-bottom: 10px;
+     }
+
+     .favorite-story {
+       color: var(--text-secondary);
+       line-height: 1.6;
+       font-size: 14px;
+     }
+
+
+
+     /* ==================== FOOTER ==================== */
+     .footer {
+       background: var(--gradient-1);
+       color: white;
+       padding: 60px 40px 30px 40px;
+       text-align: center;
+       position: relative;
+       overflow: hidden;
+     }
+
+     .footer::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: 
+         radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+         radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+       pointer-events: none;
+     }
+
+     .footer-content {
+       position: relative;
+       z-index: 1;
+       max-width: 800px;
+       margin: 0 auto;
+     }
+
+     .footer-logo {
+       font-family: 'Playfair Display', serif;
+       font-size: 2rem;
+       margin-bottom: 20px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       gap: 15px;
+     }
+
+     .footer-logo-icon {
+       font-size: 2.5rem;
+       animation: bounce 2s infinite;
+     }
+
+     .footer-quote {
+       font-family: 'Dancing Script', cursive;
+       font-size: 1.3rem;
+       margin-bottom: 30px;
+       opacity: 0.9;
+       font-style: italic;
+     }
+
+     .footer-stats {
+       display: flex;
+       justify-content: center;
+       gap: 40px;
+       margin-bottom: 30px;
+     }
+
+     .footer-stat {
+       text-align: center;
+     }
+
+     .footer-stat-number {
+       font-size: 2rem;
+       font-weight: 700;
+       display: block;
+       margin-bottom: 5px;
+     }
+
+     .footer-stat-label {
+       font-size: 12px;
+       opacity: 0.8;
+       text-transform: uppercase;
+       letter-spacing: 1px;
+     }
+
+     .footer-divider {
+       width: 100px;
+       height: 2px;
+       background: rgba(255, 255, 255, 0.3);
+       margin: 30px auto;
+     }
+
+     .footer-copyright {
+       font-size: 14px;
+       opacity: 0.7;
+     }
+
+     @keyframes bounce {
+       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+       40% { transform: translateY(-10px); }
+       60% { transform: translateY(-5px); }
+     }
+
+     /* ==================== RESPONSIVE ==================== */
+     @media (max-width: 768px) {
+       .timeline-item { padding-left: 60px; }
+       .timeline-date { left: -15px; font-size: 10px; padding: 6px 12px; }
+       .timeline-content { flex-direction: column; }
+       .timeline-image { width: 100%; height: 150px; }
+       
+       .stories-grid { grid-template-columns: 1fr; }
+       .story-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+       
+       .favorites-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+       .footer-stats { flex-direction: column; gap: 20px; }
+     }
   </style>
 </head>
 <body>
 
-  <div class="bg-wrapper">
-    <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');"></div>
-    <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1483794344563-d27a8d18014e?auto=format&fit=crop&w=1600&q=80');"></div>
-    <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=80');"></div>
+     <!-- Loading Screen - Hidden by default -->
+   <div class="loading-screen hidden" id="loadingScreen">
+     <div class="loading-text">
+       Loading precious memories...<br>
+       <small style="font-family: 'Dancing Script', cursive; font-size: 1rem; opacity: 0.8;">Every tail tells a tale</small>
+     </div>
+     <div class="loading-spinner"></div>
   </div>
 
-  <div class="glass-overlay">
-    <div class="content-box">
-      <h1>Henry’s Dogs</h1>
-      <div class="subtitle">A memory diary. Each photo is a story, a stray, a return.</div>
-      <div class="quote" id="quoteBox">“Photos. I always shoot some off messages.”</div>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo">
+      <div class="logo-icon">🐕</div>
+      <div>
+        <div class="logo-text">Henry's Pack</div>
+        <div class="logo-subtitle">Living Memory Diary</div>
+      </div>
+  </div>
+
+    <nav class="nav-modes">
+      <div class="nav-mode active" data-mode="memories">Memories</div>
+      <div class="nav-mode" data-mode="timeline">Timeline</div>
+      <div class="nav-mode" data-mode="stories">Stories</div>
+      <div class="nav-mode" data-mode="favorites">Favorites</div>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="particles" id="particles"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Every Moment Matters</h1>
+        <p class="hero-subtitle">A living diary of love, loyalty, and endless adventures</p>
+                 <div class="memory-counter">
+           <div class="counter-number" id="totalMemories">25</div>
+           <div class="counter-label">Precious Memories</div>
+      </div>
+      </div>
+    </section>
+
+         <!-- Memories Section -->
+     <section id="memoriesSection" class="memories-section mode-section">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Memory Collection</h2>
+        <p class="section-subtitle">Each photograph captures a moment in time, a story waiting to be told, a memory that lives forever in our hearts.</p>
     </div>
-    <footer>Site by Kay for Henry — Where vision rotates</footer>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar fade-in">
+        <div class="filter-tag active" data-filter="all">All Memories</div>
+        <div class="filter-tag" data-filter="playful">Playful 🎾</div>
+        <div class="filter-tag" data-filter="peaceful">Peaceful 😌</div>
+        <div class="filter-tag" data-filter="adventure">Adventure 🌟</div>
+        <div class="filter-tag" data-filter="cozy">Cozy ❤️</div>
+        <div class="filter-tag" data-filter="silly">Silly 😄</div>
+      </div>
+
+      <!-- Masonry Grid -->
+      <div class="masonry-grid" id="masonryGrid">
+        <!-- Memory cards will be generated by JavaScript -->
+      </div>
+         </section>
+
+    </div>
+
+   <!-- Footer -->
+   <footer class="footer">
+     <div class="footer-content">
+       <div class="footer-logo">
+         <span class="footer-logo-icon">🐕</span>
+         <span>Henry's Pack</span>
+  </div>
+       <div class="footer-quote">
+         "Every tail tells a tale, every moment matters, every memory is a treasure."
+       </div>
+       <div class="footer-stats">
+         <div class="footer-stat">
+           <span class="footer-stat-number">25</span>
+           <span class="footer-stat-label">Precious Memories</span>
+         </div>
+         <div class="footer-stat">
+           <span class="footer-stat-number">∞</span>
+           <span class="footer-stat-label">Moments of Love</span>
+         </div>
+         <div class="footer-stat">
+           <span class="footer-stat-number">1</span>
+           <span class="footer-stat-label">Amazing Dog</span>
+         </div>
+       </div>
+       <div class="footer-divider"></div>
+       <div class="footer-copyright">
+         Made with ❤️ for Henry • A Living Memory Diary
+       </div>
+     </div>
+   </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal">×</button>
+      <img class="modal-image" id="modalImage" src="" alt="">
+      <div class="modal-body">
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <p class="modal-story" id="modalStory"></p>
+        <div class="memory-tags" id="modalTags"></div>
+      </div>
+    </div>
   </div>
 
   <script>
-    const bgSlides = document.querySelectorAll('.bg-image');
-    let current = 0;
+         // Memory Data with Rich Stories - ALL IMAGES INCLUDED!
+     const memoryData = [
+       {
+         id: 1,
+         image: 'thumbnail_IMG_8002.jpg',
+         title: 'Morning Sunshine',
+         date: 'March 15, 2024',
+         story: 'The golden hour light streaming through the window caught Henry in the most perfect moment of peace. He had just finished his morning walk and found his favorite spot by the window, where he watches the world wake up. This quiet contemplation is when I see his gentle soul most clearly.',
+         emotion: '☀️',
+         tags: ['peaceful', 'morning', 'golden-hour'],
+         category: 'peaceful'
+       },
+       {
+         id: 2,
+         image: 'thumbnail_IMG_8004.jpg',
+         title: 'Adventure Seeker',
+         date: 'March 12, 2024',
+         story: 'Today Henry discovered the art of exploration! Every corner held a new mystery, every shadow a potential adventure. His boundless curiosity and fearless spirit remind me that life is meant to be lived with wonder and excitement.',
+         emotion: '🌟',
+         tags: ['adventure', 'exploring', 'curious'],
+         category: 'adventure'
+       },
+       {
+         id: 3,
+         image: 'thumbnail_IMG_8005.jpg',
+         title: 'Belly Rub Bliss',
+         date: 'March 10, 2024',
+         story: 'Nothing in this world makes Henry happier than a good belly rub session. The pure trust and vulnerability he shows in these moments is overwhelming. His eyes close in complete contentment, and for a moment, time stands still.',
+         emotion: '❤️',
+         tags: ['cozy', 'trust', 'love'],
+         category: 'cozy'
+       },
+       {
+         id: 4,
+         image: 'thumbnail_IMG_8006.jpg',
+         title: 'Silly Saturday',
+         date: 'March 8, 2024',
+         story: 'Henry found a new way to sleep today - completely upside down with his legs in the air! I couldn\'t stop laughing at his ridiculous position, but he looked so comfortable. His ability to find joy in the most unexpected ways never ceases to amaze me.',
+         emotion: '😄',
+         tags: ['silly', 'nap', 'comfort'],
+         category: 'silly'
+       },
+       {
+         id: 5,
+         image: 'IMG_8007.jpeg',
+         title: 'Portrait of a Good Boy',
+         date: 'March 6, 2024',
+         story: 'Sometimes a single photograph captures everything you need to know about a soul. This is Henry in his purest form - gentle, loving, wise beyond his years. His eyes tell stories of unconditional love and endless loyalty.',
+         emotion: '💝',
+         tags: ['portrait', 'love', 'soul'],
+         category: 'peaceful'
+       },
+       {
+         id: 6,
+         image: 'thumbnail_IMG_8008.jpg',
+         title: 'Fetch Champion',
+         date: 'March 5, 2024',
+         story: 'Our daily game of fetch in the backyard turned into an epic session today. Henry\'s determination to catch the tennis ball mid-air is unmatched. After twenty throws, he was still ready for more. His athletic grace and endless energy are truly inspiring.',
+         emotion: '🎾',
+         tags: ['playful', 'fetch', 'athletic'],
+         category: 'playful'
+       },
+       {
+         id: 7,
+         image: 'thumbnail_IMG_8009.jpg',
+         title: 'Afternoon Dreams',
+         date: 'March 3, 2024',
+         story: 'The afternoon sun created the perfect napping spot, and Henry claimed it immediately. Watching him sleep so peacefully, with little dream twitches and soft sighs, is one of life\'s greatest pleasures. What adventures is he dreaming of?',
+         emotion: '😌',
+         tags: ['peaceful', 'nap', 'dreams'],
+         category: 'peaceful'
+       },
+       {
+         id: 8,
+         image: 'thumbnail_IMG_8010.jpg',
+         title: 'Garden Explorer',
+         date: 'February 28, 2024',
+         story: 'Henry\'s curiosity about the garden knows no bounds. Today he spent an hour investigating every plant, every bug, every interesting scent. His methodical exploration shows his thoughtful nature and teaches me to slow down and notice the world.',
+         emotion: '🌱',
+         tags: ['adventure', 'garden', 'nature'],
+         category: 'adventure'
+       },
+       {
+         id: 9,
+         image: 'thumbnail_IMG_8011.jpg',
+         title: 'Couch Companion',
+         date: 'February 25, 2024',
+         story: 'Movie night isn\'t complete without Henry curled up beside me. He somehow always knows exactly when I need his comfort most. His warm presence and gentle breathing create the most perfect atmosphere for relaxation.',
+         emotion: '❤️',
+         tags: ['cozy', 'companion', 'comfort'],
+         category: 'cozy'
+       },
+       {
+         id: 10,
+         image: 'thumbnail_IMG_8012.jpg',
+         title: 'Treat Time Joy',
+         date: 'February 22, 2024',
+         story: 'The pure excitement in Henry\'s eyes when he hears the treat jar is absolutely priceless. His entire body wiggles with anticipation, and his focus becomes laser-sharp. These simple moments of joy remind me that happiness comes in small packages.',
+         emotion: '😍',
+         tags: ['playful', 'treats', 'excitement'],
+         category: 'playful'
+       },
+       {
+         id: 11,
+         image: 'thumbnail_IMG_8013.jpg',
+         title: 'Mischief Maker',
+         date: 'February 20, 2024',
+         story: 'Henry has developed quite the reputation as a sock thief! Today I caught him red-pawed with my favorite pair. The guilty yet proud expression on his face was absolutely hilarious. His mischievous side keeps life interesting.',
+         emotion: '😄',
+         tags: ['silly', 'mischief', 'guilty'],
+         category: 'silly'
+       },
+       {
+         id: 12,
+         image: 'thumbnail_IMG_8014.jpg',
+         title: 'Winter Wanderer',
+         date: 'February 18, 2024',
+         story: 'The first snow of the season brought out Henry\'s inner puppy! He bounded through the white powder like it was the most magical thing he\'d ever seen. Snow on his nose, joy in his heart - winter adventures are the best adventures.',
+         emotion: '❄️',
+         tags: ['adventure', 'winter', 'snow'],
+         category: 'adventure'
+       },
+       {
+         id: 13,
+         image: 'thumbnail_IMG_8015.jpg',
+         title: 'Sunbeam Seeker',
+         date: 'February 15, 2024',
+         story: 'Henry has an uncanny ability to find the perfect sunbeam in any room. Today he discovered a warm patch of light by the back door and claimed it as his personal paradise. Sometimes the simplest pleasures are the most profound.',
+         emotion: '🌞',
+         tags: ['peaceful', 'sunlight', 'content'],
+         category: 'peaceful'
+       },
+       {
+         id: 14,
+         image: 'thumbnail_IMG_8016.jpg',
+         title: 'Toy Guardian',
+         date: 'February 12, 2024',
+         story: 'Henry takes his role as toy guardian very seriously. Each squeaky toy, rope, and ball has its designated spot, and he makes sure they\'re all accounted for. His organizational skills put mine to shame!',
+         emotion: '🧸',
+         tags: ['playful', 'toys', 'guardian'],
+         category: 'playful'
+       },
+       {
+         id: 15,
+         image: 'thumbnail_IMG_8017.jpg',
+         title: 'Contemplative Moment',
+         date: 'February 10, 2024',
+         story: 'There are moments when Henry seems to be pondering the mysteries of the universe. His thoughtful expression and distant gaze suggest he\'s processing something profound. These quiet moments of reflection show his deeper, philosophical side.',
+         emotion: '🤔',
+         tags: ['peaceful', 'thoughtful', 'wise'],
+         category: 'peaceful'
+       },
+       {
+         id: 16,
+         image: 'thumbnail_IMG_8018.jpg',
+         title: 'Dinner Time Dance',
+         date: 'February 8, 2024',
+         story: 'Every evening at 5 PM sharp, Henry performs his dinner dance - a combination of spins, bounces, and tail wags that could put professional dancers to shame. His enthusiasm for mealtime is absolutely infectious.',
+         emotion: '💃',
+         tags: ['silly', 'dinner', 'dance'],
+         category: 'silly'
+       },
+       {
+         id: 17,
+         image: 'thumbnail_IMG_8019.jpg',
+         title: 'Bedtime Buddy',
+         date: 'February 5, 2024',
+         story: 'As the day winds down, Henry assumes his position as chief bedtime supervisor. He makes sure everyone is comfortable, checks all the familiar sounds, and settles in for a peaceful night. His dedication to family comfort is unwavering.',
+         emotion: '🌙',
+         tags: ['cozy', 'bedtime', 'protective'],
+         category: 'cozy'
+       },
+       {
+         id: 18,
+         image: 'thumbnail_IMG_8020.jpg',
+         title: 'Backyard Boss',
+         date: 'February 3, 2024',
+         story: 'Henry takes his backyard patrol duties very seriously. Every squirrel, bird, and falling leaf must be thoroughly investigated. His vigilant watch keeps our home safe from any potential threats - real or imagined.',
+         emotion: '🕵️',
+         tags: ['adventure', 'patrol', 'vigilant'],
+         category: 'adventure'
+       },
+       {
+         id: 19,
+         image: 'thumbnail_IMG_8021.jpg',
+         title: 'Snuggle Session',
+         date: 'February 1, 2024',
+         story: 'Cold February mornings call for extra snuggle sessions, and Henry is always ready to provide the warmth. His natural heating abilities and professional cuddling skills make him the perfect winter companion.',
+         emotion: '🤗',
+         tags: ['cozy', 'snuggle', 'warmth'],
+         category: 'cozy'
+       },
+       {
+         id: 20,
+         image: 'thumbnail_IMG_8022 (1).jpg',
+         title: 'Play Time Hero',
+         date: 'January 28, 2024',
+         story: 'When it comes to playtime, Henry transforms into a superhero of fun. His energy is limitless, his enthusiasm contagious, and his ability to turn any object into a toy is remarkable. Play is serious business in Henry\'s world.',
+         emotion: '🦸',
+         tags: ['playful', 'energy', 'fun'],
+         category: 'playful'
+       },
+       {
+         id: 21,
+         image: 'thumbnail_IMG_8022 (1).jpg',
+         title: 'Double Trouble',
+         date: 'January 26, 2024',
+         story: 'Sometimes Henry gets so excited that one photo can\'t capture all his energy! This moment shows his playful spirit in motion - a blur of joy and enthusiasm that perfectly represents his zest for life.',
+         emotion: '⚡',
+         tags: ['silly', 'energy', 'motion'],
+         category: 'silly'
+       },
+       {
+         id: 22,
+         image: 'thumbnail_IMG_8026.jpg',
+         title: 'Weekend Warrior',
+         date: 'January 24, 2024',
+         story: 'Weekends mean adventure time for Henry! Whether it\'s a hike, a car ride, or just exploring the neighborhood, he approaches every weekend activity with the enthusiasm of a true warrior ready for battle.',
+         emotion: '⚔️',
+         tags: ['adventure', 'weekend', 'warrior'],
+         category: 'adventure'
+       },
+       {
+         id: 23,
+         image: 'thumbnail_IMG_8029.jpg',
+         title: 'Gentle Soul',
+         date: 'January 20, 2024',
+         story: 'In quiet moments like these, Henry\'s gentle nature shines through. His soft eyes and calm demeanor remind me that beneath all the playful energy lies a soul of pure kindness and unconditional love.',
+         emotion: '💫',
+         tags: ['peaceful', 'gentle', 'soul'],
+         category: 'peaceful'
+       },
+       {
+         id: 24,
+         image: 'thumbnail_IMG_8030.jpg',
+         title: 'Perfect Moment',
+         date: 'January 18, 2024',
+         story: 'Some moments are so perfect they take your breath away. This is one of those times - Henry caught in a moment of pure contentment, reminding me that happiness isn\'t about grand gestures, but about perfect little moments like this.',
+         emotion: '✨',
+         tags: ['peaceful', 'perfect', 'contentment'],
+         category: 'peaceful'
+       },
+       {
+         id: 25,
+         image: 'GetAttachmentThumbnail.jpg',
+         title: 'Memory Keeper',
+         date: 'January 15, 2024',
+         story: 'This special photo represents all the memories we\'ve captured together. Each image tells a story, each moment is a treasure, and each day with Henry is a gift. This memory keeper holds all our precious times together.',
+         emotion: '📸',
+         tags: ['special', 'memories', 'treasure'],
+         category: 'cozy'
+       }
+     ];
 
-    function rotateImages() {
-      bgSlides.forEach((el, i) => {
-        el.classList.remove('active');
-        if (i === current) el.classList.add('active');
+    class HenryMemoryDiary {
+      constructor() {
+        this.memories = memoryData;
+        this.currentFilter = 'all';
+        this.currentMode = 'memories';
+        this.init();
+      }
+
+      init() {
+         console.log('Initializing Henry Memory Diary...'); // Debug
+         console.log('Total memories loaded:', this.memories.length); // Debug
+        this.setupEventListeners();
+         this.createParticles();
+         this.renderMemories(); // This should show all memories initially
+         this.setupScrollAnimations();
+        this.hideLoading();
+         console.log('Initialization complete!'); // Debug
+       }
+
+             hideLoading() {
+         // Remove loading screen immediately - no annoying wait time!
+         document.getElementById('loadingScreen').classList.add('hidden');
+       }
+
+             createParticles() {
+         const particlesContainer = document.getElementById('particles');
+         const particleCount = 30;
+         const colors = [
+           'rgba(0, 212, 255, 0.8)',
+           'rgba(255, 107, 53, 0.8)',
+           'rgba(139, 92, 246, 0.8)',
+           'rgba(236, 72, 153, 0.8)',
+           'rgba(132, 204, 22, 0.8)',
+           'rgba(251, 191, 36, 0.8)'
+         ];
+
+         for (let i = 0; i < particleCount; i++) {
+           const particle = document.createElement('div');
+           particle.className = 'particle';
+           particle.style.left = Math.random() * 100 + '%';
+           particle.style.animationDelay = Math.random() * 6 + 's';
+           particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+           particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+           particle.style.width = (Math.random() * 4 + 2) + 'px';
+           particle.style.height = particle.style.width;
+           particlesContainer.appendChild(particle);
+         }
+      }
+
+      setupEventListeners() {
+        // Navigation modes
+        document.querySelectorAll('.nav-mode').forEach(mode => {
+          mode.addEventListener('click', () => {
+            document.querySelectorAll('.nav-mode').forEach(m => m.classList.remove('active'));
+            mode.classList.add('active');
+            this.currentMode = mode.dataset.mode;
+            this.handleModeChange();
+          });
+        });
+
+                 // Filters
+         document.querySelectorAll('.filter-tag').forEach(filter => {
+           filter.addEventListener('click', () => {
+             console.log('Filter clicked:', filter.dataset.filter); // Debug
+             document.querySelectorAll('.filter-tag').forEach(f => f.classList.remove('active'));
+             filter.classList.add('active');
+             this.currentFilter = filter.dataset.filter;
+             this.renderMemories();
+           });
+         });
+
+        // Modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+          this.closeModal();
+        });
+
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+          if (e.target === e.currentTarget) {
+            this.closeModal();
+          }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.closeModal();
+          }
+        });
+      }
+
+             renderMemories() {
+         const grid = document.getElementById('masonryGrid');
+         const filteredMemories = this.currentFilter === 'all' 
+           ? this.memories 
+           : this.memories.filter(memory => memory.category === this.currentFilter);
+
+         grid.innerHTML = '';
+
+         // Debug: log the filtering
+         console.log('Current filter:', this.currentFilter);
+         console.log('Filtered memories count:', filteredMemories.length);
+
+         filteredMemories.forEach((memory, index) => {
+           const card = this.createMemoryCard(memory, index);
+           grid.appendChild(card);
+         });
+
+         document.getElementById('totalMemories').textContent = filteredMemories.length;
+         
+         // Re-trigger scroll animations for newly rendered cards
+         setTimeout(() => {
+           this.setupScrollAnimations();
+         }, 100);
+       }
+
+             createMemoryCard(memory, index) {
+         const card = document.createElement('div');
+         card.className = 'memory-card fade-in visible'; // Make visible immediately
+         card.style.animationDelay = `${index * 0.1}s`;
+         
+         card.innerHTML = `
+           <div class="memory-emotion">${memory.emotion}</div>
+           <img class="memory-image" src="${memory.image}" alt="${memory.title}" loading="lazy" onerror="console.log('Image failed to load: ${memory.image}')">
+           <div class="memory-content">
+             <div class="memory-date">${memory.date}</div>
+             <h3 class="memory-title">${memory.title}</h3>
+             <p class="memory-story">${memory.story.substring(0, 120)}...</p>
+             <div class="memory-tags">
+               ${memory.tags.map(tag => `<span class="memory-tag">${tag}</span>`).join('')}
+             </div>
+           </div>
+         `;
+
+         card.addEventListener('click', () => {
+           this.openModal(memory);
+         });
+
+         // Debug: Log card creation
+         console.log('Created card for:', memory.title);
+
+         return card;
+       }
+
+      openModal(memory) {
+        const modal = document.getElementById('modalOverlay');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalStory = document.getElementById('modalStory');
+        const modalTags = document.getElementById('modalTags');
+
+        modalImage.src = memory.image;
+        modalTitle.textContent = memory.title;
+        modalStory.textContent = memory.story;
+        modalTags.innerHTML = memory.tags.map(tag => 
+          `<span class="memory-tag">${tag}</span>`
+        ).join('');
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      closeModal() {
+        const modal = document.getElementById('modalOverlay');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+             handleModeChange() {
+         console.log(`Switched to ${this.currentMode} mode`);
+         
+         // Hide all sections first
+         document.querySelectorAll('.mode-section').forEach(section => {
+           section.style.display = 'none';
+         });
+         
+         // Show the appropriate section
+         switch(this.currentMode) {
+           case 'memories':
+             document.getElementById('memoriesSection').style.display = 'block';
+             break;
+           case 'timeline':
+             this.showTimelineView();
+             break;
+           case 'stories':
+             this.showStoriesView();
+             break;
+           case 'favorites':
+             this.showFavoritesView();
+             break;
+         }
+       }
+
+       showTimelineView() {
+         const memoriesSection = document.getElementById('memoriesSection');
+         memoriesSection.style.display = 'none';
+         
+         let timelineSection = document.getElementById('timelineSection');
+         if (!timelineSection) {
+           timelineSection = document.createElement('section');
+           timelineSection.id = 'timelineSection';
+           timelineSection.className = 'mode-section timeline-section';
+           timelineSection.innerHTML = `
+             <div class="section-header fade-in visible">
+               <h2 class="section-title">Henry's Timeline</h2>
+               <p class="section-subtitle">Journey through time with Henry's most precious moments, arranged chronologically.</p>
+             </div>
+             <div class="timeline-container">
+               ${this.createTimelineHTML()}
+             </div>
+           `;
+           document.querySelector('.memories-section').parentNode.appendChild(timelineSection);
+         }
+         timelineSection.style.display = 'block';
+         
+         // Trigger animations for timeline items
+         setTimeout(() => {
+           this.setupScrollAnimations();
+         }, 100);
+       }
+
+       showStoriesView() {
+         const memoriesSection = document.getElementById('memoriesSection');
+         memoriesSection.style.display = 'none';
+         
+         let storiesSection = document.getElementById('storiesSection');
+         if (!storiesSection) {
+           storiesSection = document.createElement('section');
+           storiesSection.id = 'storiesSection';
+           storiesSection.className = 'mode-section stories-section';
+           storiesSection.innerHTML = `
+             <div class="section-header fade-in visible">
+               <h2 class="section-title">Henry's Stories</h2>
+               <p class="section-subtitle">Dive deep into the heartwarming tales behind each photograph.</p>
+             </div>
+             <div class="stories-grid">
+               ${this.createStoriesHTML()}
+             </div>
+           `;
+           document.querySelector('.memories-section').parentNode.appendChild(storiesSection);
+         }
+         storiesSection.style.display = 'block';
+         
+         // Trigger animations for story cards
+         setTimeout(() => {
+           this.setupScrollAnimations();
+         }, 100);
+       }
+
+       showFavoritesView() {
+         const memoriesSection = document.getElementById('memoriesSection');
+         memoriesSection.style.display = 'none';
+         
+         let favoritesSection = document.getElementById('favoritesSection');
+         if (!favoritesSection) {
+           // Get top 8 most emotional memories (those with heart-related emotions)
+           const favoriteMemories = this.memories.filter(memory => 
+             ['❤️', '💝', '🤗', '😍', '💫', '✨'].includes(memory.emotion)
+           ).slice(0, 8);
+           
+           favoritesSection = document.createElement('section');
+           favoritesSection.id = 'favoritesSection';
+           favoritesSection.className = 'mode-section favorites-section';
+           favoritesSection.innerHTML = `
+             <div class="section-header fade-in visible">
+               <h2 class="section-title">Favorite Moments</h2>
+               <p class="section-subtitle">The most treasured memories that warm our hearts the most.</p>
+             </div>
+             <div class="favorites-grid">
+               ${favoriteMemories.map((memory, index) => this.createFavoriteCardHTML(memory, index)).join('')}
+             </div>
+           `;
+           document.querySelector('.memories-section').parentNode.appendChild(favoritesSection);
+         }
+         favoritesSection.style.display = 'block';
+         
+         // Trigger animations for favorite cards
+         setTimeout(() => {
+           this.setupScrollAnimations();
+         }, 100);
+       }
+
+                createTimelineHTML() {
+           return this.memories.map((memory, index) => {
+             // Trigger animation after creation
+             setTimeout(() => {
+               const timelineItem = document.querySelector(`.timeline-item:nth-child(${index + 1})`);
+               if (timelineItem) {
+                 timelineItem.style.opacity = '1';
+                 timelineItem.style.transform = 'translateX(0)';
+               }
+             }, index * 100);
+             
+             return `
+               <div class="timeline-item" style="animation-delay: ${index * 0.1}s; opacity: 0; transform: translateX(-50px);">
+                 <div class="timeline-date">${memory.date}</div>
+                 <div class="timeline-content">
+                   <img src="${memory.image}" alt="${memory.title}" class="timeline-image">
+                   <div class="timeline-info">
+                     <h3 class="timeline-title">${memory.title} ${memory.emotion}</h3>
+                     <p class="timeline-story">${memory.story}</p>
+                   </div>
+                 </div>
+               </div>
+             `;
+           }).join('');
+         }
+
+                createStoriesHTML() {
+           return this.memories.map((memory, index) => {
+             // Trigger animation after a small delay
+             setTimeout(() => {
+               const storyCard = document.querySelector(`.story-card:nth-child(${index + 1})`);
+               if (storyCard) {
+                 storyCard.style.opacity = '1';
+                 storyCard.style.transform = 'translateY(0)';
+               }
+             }, index * 50);
+             
+             return `
+               <div class="story-card" style="animation-delay: ${index * 0.05}s">
+                 <div class="story-header">
+                   <span class="story-emotion">${memory.emotion}</span>
+                   <h3 class="story-title">${memory.title}</h3>
+                   <span class="story-date">${memory.date}</span>
+                 </div>
+                 <p class="story-text">${memory.story}</p>
+                 <div class="story-tags">
+                   ${memory.tags.map(tag => `<span class="story-tag">${tag}</span>`).join('')}
+                 </div>
+               </div>
+             `;
+           }).join('');
+         }
+
+                createFavoriteCardHTML(memory, index) {
+           // Trigger animation after a small delay
+        setTimeout(() => {
+             const favoriteCard = document.querySelector(`.favorite-card:nth-child(${index + 1})`);
+             if (favoriteCard) {
+               favoriteCard.style.opacity = '1';
+               favoriteCard.style.transform = 'scale(1)';
+             }
+           }, index * 200);
+           
+           return `
+             <div class="favorite-card" style="animation-delay: ${index * 0.2}s">
+               <div class="favorite-image-container">
+                 <img src="${memory.image}" alt="${memory.title}" class="favorite-image">
+                 <div class="favorite-overlay">
+                   <span class="favorite-emotion">${memory.emotion}</span>
+                 </div>
+               </div>
+               <div class="favorite-content">
+                 <h3 class="favorite-title">${memory.title}</h3>
+                 <p class="favorite-story">${memory.story.substring(0, 80)}...</p>
+               </div>
+             </div>
+           `;
+         }
+
+             setupScrollAnimations() {
+         const observerOptions = {
+           threshold: 0.1,
+           rootMargin: '0px 0px -50px 0px'
+         };
+
+         // Clear any existing observer
+         if (this.scrollObserver) {
+           this.scrollObserver.disconnect();
+         }
+
+         this.scrollObserver = new IntersectionObserver((entries) => {
+           entries.forEach(entry => {
+             if (entry.isIntersecting) {
+               entry.target.classList.add('visible');
+             }
+           });
+         }, observerOptions);
+
+         // Observe all fade-in elements, including newly created memory cards
+         document.querySelectorAll('.fade-in').forEach(el => {
+           this.scrollObserver.observe(el);
+         });
+      }
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      new HenryMemoryDiary();
+    });
+
+    // Additional visual enhancements
+    document.addEventListener('mousemove', (e) => {
+      const particles = document.querySelectorAll('.particle');
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+
+      particles.forEach((particle, index) => {
+        const speed = (index % 3 + 1) * 0.5;
+        const x = mouseX * speed;
+        const y = mouseY * speed;
+        particle.style.transform = `translate(${x}px, ${y}px)`;
       });
-      current = (current + 1) % bgSlides.length;
-    }
-
-    setInterval(rotateImages, 9000);
-    rotateImages();
-
-    const quotes = [
-      "“Photos. I always shoot some off messages.”",
-      "“Kind of an added connection.”",
-      "“Move to the front of the line.”",
-      "“Each dog is a memory. Some bark back.”",
-      "“The universe leaves a photo trail.”",
-      "“Not a pipe dream — just a signal.”"
-    ];
-
-    const quoteBox = document.getElementById('quoteBox');
-    let quoteIndex = 0;
-
-    function rotateQuote() {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      quoteBox.style.opacity = 0;
-      setTimeout(() => {
-        quoteBox.textContent = quotes[quoteIndex];
-        quoteBox.style.opacity = 1;
-      }, 600);
-    }
-
-    setInterval(rotateQuote, 8000);
+    });
   </script>
 
 </body>
